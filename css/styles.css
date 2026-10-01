@@ -1,0 +1,236 @@
+/* ==========================================================
+   styles.css - Fundamentos WEB, Grupo 4303
+   Proyecto: Realidad virtual y aumentada / Ciudades inteligentes
+   Convención: clases en inglés, minúsculas, kebab-case (BEM)
+   ========================================================== */
+
+/* 1. PALETA (centralizada en variables)
+   Contraste aprox. sobre blanco: primary 12.6:1 | secondary 7.9:1
+   accent 5.5:1 | text 14.7:1 | muted 7.6:1 */
+:root {
+    --color-primary: #2d2a6e;     /* índigo profundo: encabezado, títulos */
+    --color-secondary: #4338ca;   /* índigo vivo: enlaces, degradado */
+    --color-accent: #0f766e;      /* teal: detalles y foco */
+    --color-bg: #f1f2fa;          /* fondo general */
+    --color-surface: #ffffff;     /* tarjetas y secciones */
+    --color-text: #1f2937;        /* texto principal */
+    --color-muted: #4b5563;       /* texto secundario */
+    --color-border: #d6d9ec;      /* bordes suaves */
+    --color-row-alt: #f0effa;     /* filas alternas de tabla */
+    --color-row-hover: #e2e0f7;   /* fila al pasar el mouse */
+    --color-soft: #e8e6fb;        /* fondo suave de la navegación activa */
+
+    --radius: 0.75rem;
+    --shadow: 0 2px 4px rgba(45, 42, 110, 0.08),
+              0 8px 20px rgba(45, 42, 110, 0.10);
+}
+
+/* 2. ESTILOS BASE */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", system-ui, Arial, Helvetica, sans-serif;
+    line-height: 1.7;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: var(--color-secondary);
+    text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus {
+    color: var(--color-primary);
+}
+
+/* Foco visible para navegación con teclado */
+a:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 0.25rem;
+}
+
+/* 3. ENCABEZADO */
+.site-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: #ffffff;
+    padding: 3.5rem 1.5rem 3rem;
+    border-bottom: 5px solid var(--color-accent);
+    text-align: center;
+}
+
+.site-header__title {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.site-header__intro {
+    margin: 0 auto;
+    max-width: 55ch;
+    font-size: 1.1rem;
+    opacity: 0.95;
+}
+
+/* 4. NAVEGACIÓN */
+.main-nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-surface);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 2px 8px rgba(45, 42, 110, 0.08);
+}
+
+.main-nav a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    transition: background-color 0.2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+    background-color: var(--color-soft);
+    text-decoration: underline;
+}
+
+/* Página actual (usar aria-current="page" en el enlace) */
+.main-nav a[aria-current="page"] {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+/* 5. CONTENIDO PRINCIPAL */
+.site-main {
+    width: min(1000px, 92%);
+    margin: 2.5rem auto;
+}
+
+.topic-section {
+    background-color: var(--color-surface);
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    border-left: 6px solid var(--color-accent);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.topic-section h2 {
+    margin-top: 0;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    line-height: 1.25;
+}
+
+.topic-section p,
+.topic-section li {
+    max-width: 75ch;
+}
+
+.topic-section li::marker {
+    color: var(--color-accent);
+}
+
+/* 6. FIGURAS E IMÁGENES */
+figure {
+    margin: 1.5rem 0 0;
+}
+
+figure img {
+    display: block;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+figcaption {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--color-muted);
+    margin-top: 0.6rem;
+}
+
+/* 7. TABLAS */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.95rem;
+}
+
+caption {
+    text-align: left;
+    font-weight: bold;
+    color: var(--color-primary);
+    padding-bottom: 0.6rem;
+}
+
+th,
+td {
+    border: 1px solid var(--color-border);
+    padding: 0.8rem 1rem;
+    text-align: left;
+}
+
+th {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--color-row-alt);
+}
+
+tbody tr:hover {
+    background-color: var(--color-row-hover);
+}
+
+/* 8. PIE DE PÁGINA */
+.site-footer {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 2rem 1rem;
+    text-align: center;
+    border-top: 5px solid var(--color-accent);
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* 9. PANTALLAS PEQUEÑAS */
+@media (max-width: 600px) {
+    .site-header {
+        padding: 2.5rem 1rem 2rem;
+    }
+
+    .topic-section {
+        padding: 1.25rem;
+        overflow-x: auto;   /* la tabla se desplaza sin romper la página */
+    }
+}
+
+/* 10. ACCESIBILIDAD: respetar preferencia de menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .main-nav a {
+        transition: none;
+    }
+}
